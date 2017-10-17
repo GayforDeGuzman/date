@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lan="en">
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Document</title>
+            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+            <link href='assets/css/rotating-card.css' rel='stylesheet' />
+            <link rel="stylesheet" href="assets/css/open-iconic-bootstrap.min.css">
+            <link rel="stylesheet" href="assets/css/lickedit.css">
+        <style>
+            #firstval, #secondval{
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 16pt;
+                font: bold;
+            }
+            #agePrefer{
+                text-align: center;
+            }
+            #month{
+                width: 8em;
+            }
+            #label{
+                font-family: Arial;
+                font-size: 16pt;
+                font: bold;
+            }
+            .box{
+                border: 2;
+                border-color: black;
+            }
+            .slider {
+                -webkit-appearance: none;  /* Override default CSS styles */
+                appearance: none;
+                width: 30%; /* Full-width */
+                height: 15px; /* Specified height */
+                background: #d3d3d3; /* Grey background */
+                outline: none; /* Remove outline */
+                opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+                -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+                transition: opacity .2s;
+            }
+
+            /* Mouse-over effects */
+            .slider:hover {
+                opacity: 1; /* Fully shown on mouse-over */
+            }
+
+            /* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */ 
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none; /* Override default look */
+                appearance: none;
+                width: 10px; /* Set a specific slider handle width */
+                height: 25px; /* Slider handle height */
+                background: #4CAF50; /* Green background */
+                cursor: pointer;
+                border-radius: 40%; /* Cursor on hover */
+            }
+
+            .slider::-moz-range-thumb {
+                width: 10px; /* Set a specific slider handle width */
+                height: 25px; /* Slider handle height */
+                background: #4CAF50; /* Green background */
+                cursor: pointer; /* Cursor on hover */
+            }
+            .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            height: 90vh;
+            }
+
+            .mySlides {
+                display: none;
+                height: 50%;
+            }
+
+            /* Next & previous buttons */
+            .prev, .next {
+            cursor: pointer;
+            position: bottom, fixed;
+           /* top: 50%;*/
+            width: 60px;
+            height: 40px;
+            margin-top: 2px;
+            padding:auto;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            }
+
+            /* Position the "next button" to the right */
+            .next {
+            right: 0;
+            float: right;
+            border-radius: 3px 0 0 3px;
+            }
+
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            }
+
+            /* Caption text */
+            .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            }
+
+            /* Number text (1/3 etc) */
+            .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+            }
+
+            /* The dots/bullets/indicators */
+            .dot {
+            cursor:pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+            }
+
+            .active, .dot:hover {
+            background-color: #ae4040;
+            }
+
+            @-webkit-keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+            }
+
+            @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+            }
+        </style>
+    </head>
+<body>
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <header style="padding-top:30px; font-size:20pt;border:2; text-align:center">We want to know you more ...</header>
+                <div class="card col-lg-8 box" style="margin-left:10em; margin-top: 2em;">
+                    <div class="card-header">
+                        <h4>Personal Information</h4>
+                    </div>
+                    <div class="card-body" style="text-align:left; padding-left: 4em;">
+                        <br>
+                        <label id="label">Nickname&nbsp;&nbsp;</label><input type="text" name="nickname" id="nickname" placeholder="@Chinny" style="width: 24em;"><br><br>
+                        <label id="label">Sex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><select name="gender" id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                        </select><br><br>
+                        <label id="label">Birthday:&nbsp;&nbsp;&nbsp;</label>
+                        <label id="label">MM&nbsp;</label><select name=" month" id="month">
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <label id="label">&nbsp;&nbsp;DD&nbsp;</label> <select name="day" id="day">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                        <label id="label">&nbsp;&nbsp;YY&nbsp;</label><select name="year" id="year">
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                            <option value="2013">2013</option>
+                            <option value="2012">2012</option>
+                            <option value="2011">2011</option>
+                            <option value="2010">2010</option>
+                            <option value="2009">2009</option>
+                            <option value="2008">2008</option>
+                            <option value="2007">2007</option>
+                            <option value="2006">2006</option>
+                        </select><br><br>
+                        <label id="label">Lived In:&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" id="address" placeholder="Zamboanga City, Philippines" style="width: 24em;" /><hr>
+                        <label id="label"> Interested In :&nbsp;&nbsp;</label><select name="maleorfem" id"maleorfem" style="width:15em;">
+                            <option value="MtoF">Male interested in Female</option>
+                            <option value="FtoM">Female interested in Male</option>
+                            <option value="MtoM">Male interested in Male</option>
+                            <option value="FtoF">Female interested in Female</option>
+                        </select><br>
+                        <div id="slidecontainer" style="padding-left:4em;">
+                            <input type="range" min="18" max="70" value="21" class="slider" id="myRange1" />&nbsp;&nbsp;<span id="firstval"></span>&nbsp;-to-&nbsp;<span id="secondval"></span>
+                            &nbsp;&nbsp;<input type="range" min="18" max="70" value="30" class="slider" id="myRange2" />
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="next" onclick="plusSlides(1)">Next</button>
+                    </div>
+                </div>
+        </div>              
+        <div class="mySlides">
+            <header style="padding-top:30px; font-size:20pt;border:2; text-align:center">Tell us more about you ...</header>
+                <div class="card col-lg-8 box" style="margin-left:10em; margin-top: 2em;">
+                    <div class="card-body" style="text-align:left; padding-left: 4em;">
+                        When i'm not busy, I usually am&nbsp;&nbsp;<select name="hobby" id="hobby"  style="width: 13em;">
+                                <option value="Reading Books">Reading Books</option>
+                                <option value="watching tv">watching tv</option>
+                                <option value="listening to music">Listening to music</option>
+                                <option value="eating">eating</option>
+                                <option value="hiking">Hiking</option>
+                                <option value="singing">Singing</option>
+                                <option value="writing compositions">Writing Compositions</option>
+                        </select><br><br>
+                        When it comes to music, I prefer&nbsp;<select name="music" id="music" style="width: 13em;">
+                                <option value="acoustic">Acoustic</option>
+                                <option value="alternative">Alternative</option>
+                                <option value="ballad">Ballad</option>
+                                <option value="blues">Blues</option>
+                                <option value="country">Country</option>
+                                <option value="kpop">K-POP</option>
+                                <option value="opm">OPM</option>
+                                <option value="pop">Pop</option>
+                                <option value="rnb">R & B</option>
+                                <option value="rock">Rock</option>
+                        </select><br><br>
+                        My motto in life is:&nbsp;<input type="text" placeholder="Live life to the fullest!" style="width: 22em;">
+                        <hr>
+                        I'm looking for a&nbsp;<select name="partner" id="partner">
+                                <option value="Boyfriend">Boyfriend</option>
+                                <option value="girlfriend">Girlfriend</option>
+                                <option value="Lifetime-partner">Lifetime Partner</option>
+                                <option value="temporary-fix">Temporary Fix</option>
+                                <option value="fb" selected>Fuck Buddy</option>
+                            </select><hr>
+                        <p>About Me</p>
+                        <textarea name="description" id="description" cols="70" rows="6" placeholder="A short description about yourself..."></textarea>
+                    </div>
+                    <div class="card-footer">
+                            <button class="prev" onclick="plusSlides(-1)">Back</button>
+                            <button class="next" onclick="plusSlides(1)">Next</button>
+                    </div>
+                </div>
+        </div>
+        <div class="mySlides">
+                <header style="padding-top:30px; font-size:20pt; border:2; text-align:center">Get Noticed.. !</header>
+                <div class="card col-lg-8 box" style="margin-left:10em; margin-top: 2em;">
+                    <div class="card-header">
+                        <h4>upload Profile Picture</h4>
+                    </div>
+                    <div class="card-body" style="text-align:left; padding-left: 4em;">
+                        <br>
+                        <div class="text-center">
+                                <img src="//placehold.it/250" class="avatar img-circle" alt="avatar"><br><br>
+                                <center><input type="file" class="form-control" style="width:20em;"></center>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="prev" onclick="plusSlides(-1)">Back</button>
+                        <button class="next" onclick="assets/php/home.php">Sbmit</button>
+                    </div>
+                </div>
+        </div>   
+    </div>
+        <!--<button class="prev" onclick="plusSlides(-1)">Back</button>
+        <button class="next" onclick="plusSlides(1)">Next</button>-->
+        <br>
+        <div style="text-align:center;">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span> 
+            <span class="dot" onclick="currentSlide(3)"></span> 
+        </div>
+</body>
+<script>
+        var slider1 = document.getElementById("myRange1");
+        var output1 = document.getElementById("firstval");
+        output1.innerHTML = slider1.value; // Display the default first slider value
+    
+        var slider2 = document.getElementById("myRange2");
+        var output2 = document.getElementById("secondval");
+        output2.innerHTML = slider2.value; // Display the default second slider value
+    
+        // Update the current slider value
+        slider1.oninput = function() {
+            output1.innerHTML = this.value;
+        }
+        slider2.oninput = function() {
+            output2.innerHTML = this.value;
+        }
+    
+        var slideIndex = 1;
+        showSlides(slideIndex);
+    
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+    
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+    
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1} 
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none"; 
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block"; 
+        dots[slideIndex-1].className += " active";
+        }
+    </script>
+</html>
